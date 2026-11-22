@@ -1,3 +1,4 @@
+import type { JSX } from 'react'
 import { Mail } from 'lucide-react'
 import { profile } from '../../data/portfolio'
 import { GithubIcon, LinkedinIcon } from './BrandIcons'
@@ -10,7 +11,7 @@ export function SocialLinks({ className = '' }: { className?: string }) {
     github && { href: github, label: 'GitHub', icon: <GithubIcon />, external: true },
     linkedin && { href: linkedin, label: 'LinkedIn', icon: <LinkedinIcon />, external: true },
     email && { href: `mailto:${email}`, label: 'Email', icon: <Mail aria-hidden="true" className="size-5" />, external: false },
-  ].filter((l): l is { href: string; label: string; icon: React.JSX.Element; external: boolean } => Boolean(l))
+  ].filter((l): l is { href: string; label: string; icon: JSX.Element; external: boolean } => Boolean(l))
 
   return (
     <ul className={`flex items-center gap-2 ${className}`}>

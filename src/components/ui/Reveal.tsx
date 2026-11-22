@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState, type CSSProperties, type ElementType, type ReactNode } from 'react'
+import { useEffect, useRef, useState, type CSSProperties, type ElementType, type HTMLAttributes, type ReactNode } from 'react'
 
-interface RevealProps {
+interface RevealProps extends Omit<HTMLAttributes<HTMLElement>, 'className' | 'children'> {
   children: ReactNode
   as?: ElementType
   className?: string
@@ -9,7 +9,7 @@ interface RevealProps {
 }
 
 /** Fades content in once it scrolls into view. Disabled by `prefers-reduced-motion` in CSS. */
-export function Reveal({ children, as: Tag = 'div', className = '', delay = 0 }: RevealProps) {
+export function Reveal({ children, as: Tag = 'div', className = '', delay = 0, style, ...rest }: RevealProps) {
   const ref = useRef<HTMLElement>(null)
   // Show immediately where IntersectionObserver is unavailable
   const [visible, setVisible] = useState(() => !('IntersectionObserver' in window))
@@ -32,9 +32,10 @@ export function Reveal({ children, as: Tag = 'div', className = '', delay = 0 }:
 
   return (
     <Tag
+      {...rest}
       ref={ref}
       className={`reveal ${visible ? 'is-visible' : ''} ${className}`}
-      style={{ '--reveal-delay': `${delay}ms` } as CSSProperties}
+      style={{ ...style, '--reveal-delay': `${delay}ms` } as CSSProperties}
     >
       {children}
     </Tag>

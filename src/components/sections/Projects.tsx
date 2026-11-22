@@ -5,20 +5,19 @@ import { SectionHeading } from '../ui/SectionHeading'
 
 export function Projects() {
   return (
-    <section id="projects" aria-labelledby="projects-title" className="relative py-24 sm:py-32">
-      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-line-strong to-transparent" />
+    <section id="projects" aria-labelledby="projects-title" className="section-y border-t border-line/60">
       <div className="container-page">
         <SectionHeading
           id="projects"
           eyebrow="03 — Projects"
           title="Featured Projects"
-          description="A mix of professional work, shared as an anonymized case study, and personal projects I'm building in the open."
+          description="Professional work shared as an anonymized case study, alongside personal projects I'm building in the open."
         />
 
-        <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <ul className="grid gap-4 md:grid-cols-2">
           {projects.map((project, i) => (
-            <Reveal as="li" key={project.title} delay={i * 80} className="h-full">
-              <ProjectCard project={project} index={i} />
+            <Reveal as="li" key={project.title} delay={i * 70} className={`h-full ${project.featured ? 'md:col-span-2' : ''}`}>
+              <ProjectCard project={project} featured={project.featured} />
             </Reveal>
           ))}
         </ul>

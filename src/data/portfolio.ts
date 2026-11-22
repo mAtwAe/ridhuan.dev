@@ -50,6 +50,10 @@ export interface Project {
   status: ProjectStatus
   /** Short context label, e.g. "Anonymized case study" */
   category: string
+  /** Featured projects get a full-width card. Best used for one project. */
+  featured?: boolean
+  /** Optional processing steps, shown as a small flow on featured cards */
+  flow?: string[]
   /** Optional — only rendered when set */
   repoUrl?: string
   /** Optional — only rendered when set */
@@ -173,6 +177,8 @@ export const projects: Project[] = [
     tech: ['Java', 'Spring Boot', 'Spring Batch', 'SQL Server', 'SFTP'],
     status: 'professional',
     category: 'Anonymized case study',
+    featured: true,
+    flow: ['Retrieve from SFTP', 'Validate input', 'Persist to database', 'Retry & log failures'],
   },
   {
     title: 'Personal Finance & Expense Tracker',

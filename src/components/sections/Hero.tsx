@@ -1,46 +1,70 @@
+import type { CSSProperties } from 'react'
 import { ArrowRight, Download, MapPin } from 'lucide-react'
 import { profile } from '../../data/portfolio'
 import { CodeCard } from '../ui/CodeCard'
-import { Reveal } from '../ui/Reveal'
 import { SocialLinks } from '../ui/SocialLinks'
 
+const delay = (ms: number) => ({ '--enter-delay': `${ms}ms` }) as CSSProperties
+
 export function Hero() {
+  // "Software Engineer | Backend & Cloud Engineering" → role + specialty, rendered with a proper separator
+  const [role, ...rest] = profile.title.split('|').map((s) => s.trim())
+  const specialty = rest.join(' · ')
+
   return (
-    <section id="top" aria-labelledby="hero-title" className="relative overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28">
+    <section id="top" aria-labelledby="hero-title" className="relative overflow-hidden pt-32 pb-16 sm:pt-44 sm:pb-24">
       {/* Background */}
       <div aria-hidden="true" className="bg-grid pointer-events-none absolute inset-0" />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -top-40 left-1/2 h-[480px] w-[900px] max-w-[160vw] -translate-x-1/2 rounded-full bg-accent/15 blur-[120px]"
+        className="pointer-events-none absolute -top-56 left-1/2 h-[520px] w-[1000px] max-w-[180vw] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(59_130_246/0.16),transparent)]"
       />
 
-      <div className="container-page relative grid items-center gap-14 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
+      <div className="container-page relative grid items-center gap-16 lg:grid-cols-[1.08fr_1fr] lg:gap-14">
         <div>
           {profile.availability && (
-            <Reveal>
-              <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-line bg-white/[0.03] px-3 py-1 text-xs text-slate-400">
-                <span aria-hidden="true" className="status-dot size-1.5 rounded-full bg-emerald-400" />
+            <div className="enter">
+              <p className="mb-8 inline-flex items-center gap-2.5 text-sm text-fg-muted">
+                <span aria-hidden="true" className="relative flex size-2">
+                  <span className="absolute inset-0 rounded-full bg-emerald-400/30 blur-[3px]" />
+                  <span className="relative size-2 rounded-full bg-emerald-400" />
+                </span>
                 {profile.availability}
               </p>
-            </Reveal>
+            </div>
           )}
 
-          <Reveal delay={60}>
-            <h1 id="hero-title" className="text-4xl font-semibold tracking-tight text-white sm:text-6xl">
-              Hi, I&apos;m <span className="bg-gradient-to-r from-white to-accent-soft bg-clip-text text-transparent">{profile.name}.</span>
+          <div className="enter" style={delay(60)}>
+            <h1
+              id="hero-title"
+              className="text-[2.75rem] leading-[1.02] font-semibold tracking-[-0.04em] sm:text-7xl"
+            >
+              Hi, I&apos;m {profile.name}
+              <span className="text-accent">.</span>
             </h1>
-          </Reveal>
+          </div>
 
-          <Reveal delay={120}>
-            <p className="mt-4 text-lg font-medium text-slate-200 sm:text-xl">{profile.title}</p>
-          </Reveal>
+          <div className="enter" style={delay(120)}>
+            <p className="mt-5 text-lg font-medium tracking-[-0.01em] text-fg sm:text-xl">
+              {role}
+              {specialty && (
+                <>
+                  <span aria-hidden="true" className="mx-2.5 text-line-strong">
+                    /
+                  </span>
+                  <span className="sr-only">, </span>
+                  <span className="text-fg-muted">{specialty}</span>
+                </>
+              )}
+            </p>
+          </div>
 
-          <Reveal delay={180}>
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-slate-400 sm:text-lg">{profile.tagline}</p>
-          </Reveal>
+          <div className="enter" style={delay(180)}>
+            <p className="mt-6 max-w-[34rem] text-base leading-[1.75] text-fg-muted sm:text-[1.0625rem]">{profile.tagline}</p>
+          </div>
 
-          <Reveal delay={240}>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+          <div className="enter" style={delay(240)}>
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <a href="#projects" className="btn-primary group">
                 Explore My Work
                 <ArrowRight aria-hidden="true" className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
@@ -50,22 +74,23 @@ export function Hero() {
                 Download Resume
               </a>
             </div>
-          </Reveal>
+          </div>
 
-          <Reveal delay={300}>
-            <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4">
+          <div className="enter" style={delay(300)}>
+            <div className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-4 border-t border-line pt-6">
               <SocialLinks />
-              <p className="flex items-center gap-1.5 text-sm text-slate-500">
+              <span aria-hidden="true" className="hidden h-5 w-px bg-line sm:block" />
+              <p className="flex items-center gap-1.5 text-sm text-fg-subtle">
                 <MapPin aria-hidden="true" className="size-4" />
                 {profile.location}
               </p>
             </div>
-          </Reveal>
+          </div>
         </div>
 
-        <Reveal delay={200} className="mx-auto w-full max-w-lg lg:max-w-none">
+        <div className="enter mx-auto w-full max-w-lg lg:max-w-none" style={delay(200)}>
           <CodeCard />
-        </Reveal>
+        </div>
       </div>
     </section>
   )

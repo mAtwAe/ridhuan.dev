@@ -8,17 +8,11 @@ interface SkillBadgeProps {
 export function SkillBadge({ name, level = 'active' }: SkillBadgeProps) {
   const styles =
     level === 'exploring'
-      ? 'border-dashed border-amber-400/30 bg-amber-400/[0.04] text-amber-100/90 hover:border-amber-300/50'
-      : 'border-line bg-white/[0.03] text-slate-200 hover:border-accent/50 hover:text-white'
+      ? 'border-dashed border-learn/35 text-learn-fg hover:border-learn/60'
+      : 'border-line bg-white/[0.025] text-fg hover:border-line-strong hover:bg-white/[0.05]'
 
   return (
-    <li
-      className={`inline-flex items-center gap-2 rounded-lg border px-3 py-1.5 text-sm transition-colors duration-200 ${styles}`}
-    >
-      <span
-        aria-hidden="true"
-        className={`size-1.5 rounded-full ${level === 'exploring' ? 'bg-amber-400/80' : 'bg-accent-soft'}`}
-      />
+    <li className={`inline-flex items-center rounded-md border px-2.5 py-1 text-[0.8125rem] transition-colors duration-200 ${styles}`}>
       {name}
     </li>
   )

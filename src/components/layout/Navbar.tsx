@@ -51,7 +51,7 @@ export function Navbar() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,backdrop-filter] duration-300 ${
-        solid ? 'border-line/80 bg-ink-900/75 backdrop-blur-xl' : 'border-transparent bg-transparent'
+        solid ? 'border-line/80 bg-canvas/75 backdrop-blur-xl' : 'border-transparent bg-transparent'
       }`}
     >
       <a
@@ -64,17 +64,17 @@ export function Navbar() {
       <nav aria-label="Primary" className="container-page flex h-16 items-center justify-between">
         <a
           href="#top"
-          className="group flex items-center gap-2 font-mono text-[0.95rem] font-semibold tracking-tight text-white"
+          className="group flex items-center gap-2 font-mono text-[0.95rem] font-semibold tracking-tight text-fg"
           aria-label={`${profile.domain} — back to top`}
         >
           <span
             aria-hidden="true"
-            className="flex size-7 items-center justify-center rounded-lg border border-line-strong bg-ink-800 text-xs text-accent-soft transition-colors group-hover:border-accent/60"
+            className="flex size-7 items-center justify-center rounded-lg border border-line-strong bg-surface-raised text-xs text-accent-fg transition-colors group-hover:border-accent/60"
           >
             r.
           </span>
           <span>
-            ridhuan<span className="text-accent-soft">.dev</span>
+            ridhuan<span className="text-accent-fg">.dev</span>
           </span>
         </a>
 
@@ -86,8 +86,8 @@ export function Navbar() {
                 <a
                   href={item.href}
                   aria-current={active === item.href ? 'location' : undefined}
-                  className={`rounded-lg px-3 py-2 text-sm transition-colors duration-200 ${
-                    active === item.href ? 'text-white' : 'text-slate-400 hover:text-white'
+                  className={`rounded-md px-3 py-1.5 text-sm transition-colors duration-200 ${
+                    active === item.href ? 'bg-white/[0.06] text-fg' : 'text-fg-muted hover:text-fg'
                   }`}
                 >
                   {item.label}
@@ -99,7 +99,7 @@ export function Navbar() {
             href={profile.resumeUrl}
             target="_blank"
             rel="noopener"
-            className="btn-secondary ml-3 min-h-9 px-4 py-1.5"
+            className="btn-secondary ml-3 min-h-9 px-3.5"
           >
             <FileText aria-hidden="true" className="size-4" />
             Resume
@@ -127,7 +127,7 @@ export function Navbar() {
               <a
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="flex min-h-12 items-center rounded-lg px-2 text-base text-slate-300 hover:bg-white/[0.04] hover:text-white"
+                className="flex min-h-12 items-center rounded-lg px-2 text-base text-fg-muted hover:bg-white/[0.04] hover:text-fg"
               >
                 {item.label}
               </a>

@@ -6,13 +6,13 @@ export function Footer() {
 
   return (
     <footer className="border-t border-line">
-      <div className="container-page flex flex-col items-center justify-between gap-4 py-8 text-sm text-slate-500 sm:flex-row">
+      <div className="container-page flex flex-col items-center justify-between gap-4 py-8 text-sm text-fg-subtle sm:flex-row">
         <p>
           © {year} {profile.name}. Built with React &amp; TypeScript.
         </p>
         <a
           href="#top"
-          className="inline-flex items-center gap-1.5 rounded-lg px-2 py-1 transition-colors hover:text-white"
+          className="inline-flex min-h-11 items-center gap-1.5 rounded-lg px-2 transition-colors hover:text-fg"
         >
           Back to top
           <ArrowUp aria-hidden="true" className="size-4" />
