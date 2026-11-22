@@ -86,7 +86,7 @@ export const profile: Profile = {
     "I build reliable backend systems, scalable APIs, and enterprise applications using Java, Spring Boot, and cloud-native technologies. I'm passionate about solving complex engineering problems and building software that delivers real-world value.",
   location: 'Kuala Lumpur, Malaysia',
   // Shown as a small badge in the hero. Set to '' to hide it.
-  availability: 'Open to backend engineering opportunities',
+  availability: 'Open to software engineering opportunities',
   domain: 'ridhuan.dev',
   resumeUrl: '/resume.pdf',
   social: {
