@@ -2,7 +2,7 @@
 
 Personal portfolio for Ridhuan — Software Engineer, Backend & Cloud Engineering.
 
-A fully static single-page site built with **React 19 + TypeScript**, **Vite**, **Tailwind CSS v4** and **Lucide** icons. There's no backend, database or paid service, so it deploys to **Cloudflare Pages** for free.
+A fully static single-page site built with **React 19 + TypeScript**, **Vite**, **Tailwind CSS v4** and **Lucide** icons. There's no backend, database or paid service, so it deploys to **Cloudflare** for free.
 
 ---
 
@@ -42,22 +42,23 @@ git remote add origin https://github.com/mAtwAe/portfolio.git
 git push -u origin main
 ```
 
-## 5. Deploy to Cloudflare Pages
+## 5. Deploy to Cloudflare
 
-1. Sign in at https://dash.cloudflare.com (the free plan is enough).
-2. Go to **Workers & Pages → Create → Pages → Connect to Git**.
-3. Authorize GitHub and select your portfolio repository.
-4. Use these build settings:
+The repo includes [`wrangler.jsonc`](wrangler.jsonc), which deploys `./dist` as a **Cloudflare Worker with static assets**. That's Cloudflare's current recommended way to host static sites, and it's free.
 
-   | Setting                | Value            |
-   | ---------------------- | ---------------- |
-   | Framework preset       | `Vite` (or None) |
-   | Build command          | `npm run build`  |
-   | Build output directory | `dist`           |
+1. Sign in at https://dash.cloudflare.com.
+2. Go to **Workers & Pages → Create → Import a repository**, and pick this GitHub repo.
+3. Use these settings:
 
-   If the build uses an old Node version, add an environment variable `NODE_VERSION` = `22`.
+   | Setting        | Value                |
+   | -------------- | -------------------- |
+   | Project name   | `ridhuan-dev` (must match `name` in `wrangler.jsonc`) |
+   | Build command  | `npm run build`      |
+   | Deploy command | `npx wrangler deploy` |
 
-5. Click **Save and Deploy**. You'll get a `*.pages.dev` URL. Every push to `main` redeploys automatically.
+4. Deploy. You'll get a `*.workers.dev` URL, and every push to `main` redeploys automatically.
+
+> If you rename the Worker in the dashboard, update `name` in `wrangler.jsonc` to match.
 
 ## 6. Connect your Namecheap domain (`ridhuan.dev`)
 
@@ -67,7 +68,7 @@ The simplest and most reliable option is to let Cloudflare manage DNS for the do
 2. Cloudflare shows you **two nameservers** (e.g. `xxx.ns.cloudflare.com`).
 3. In **Namecheap → Domain List → ridhuan.dev → Manage → Nameservers**, choose **Custom DNS** and enter the two Cloudflare nameservers. Save.
 4. Wait for the domain to show as **Active** in Cloudflare. This usually takes minutes, but can take up to 24 hours.
-5. Open your Pages project → **Custom domains → Set up a custom domain**, and add `ridhuan.dev`. Repeat for `www.ridhuan.dev` if you want it.
+5. Open the Worker → **Settings → Domains & Routes → Add → Custom domain**, and add `ridhuan.dev`. Repeat for `www.ridhuan.dev` if you want it.
 6. Cloudflare creates the DNS records and the HTTPS certificate automatically.
 
 > `.dev` domains are HSTS-preloaded, so they **only work over HTTPS**. Cloudflare handles this for you.
@@ -101,7 +102,7 @@ Put your resume at:
 public/resume.pdf
 ```
 
-The filename must be exactly `resume.pdf`. The navbar, hero and contact buttons all link to `/resume.pdf`. Commit and push, and Cloudflare redeploys it.
+The filename must be exactly `resume.pdf`. The navbar, hero and contact buttons all link to `/resume.pdf`. Commit and push, and Cloudflare redeploys automatically.
 
 ---
 
@@ -127,4 +128,4 @@ src/
 - Scroll-reveal and smooth scrolling are turned off when the user has `prefers-reduced-motion` set.
 - Fonts (Inter, JetBrains Mono) are self-hosted through Fontsource, so there are no third-party requests.
 - No animation library: reveals use `IntersectionObserver` and CSS.
-- `public/_headers` sets long-term caching for hashed assets and basic security headers on Cloudflare Pages.
+- `public/_headers` sets long-term caching for hashed assets and basic security headers (Cloudflare applies `_headers` to static assets).

@@ -1,0 +1,12 @@
+{
+  // Cloudflare Workers static-assets config for ridhuan.dev
+  // https://developers.cloudflare.com/workers/static-assets/
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "ridhuan-dev",
+  "compatibility_date": "2026-11-19",
+  "assets": {
+    "directory": "./dist",
+    // Unknown paths fall back to index.html (single-page site)
+    "not_found_handling": "single-page-application"
+  }
+}
