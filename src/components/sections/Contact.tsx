@@ -40,7 +40,7 @@ export function Contact() {
                     Email Me
                   </a>
                 )}
-                <a href={profile.resumeUrl} download className="btn-secondary">
+                <a href={profile.resumeUrl} download={profile.resumeFileName} className="btn-secondary">
                   <Download aria-hidden="true" className="size-4" />
                   Download Resume
                 </a>

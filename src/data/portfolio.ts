@@ -23,6 +23,8 @@ export interface Profile {
   availability: string
   domain: string
   resumeUrl: string
+  /** Filename used when the resume is downloaded */
+  resumeFileName: string
   social: SocialLinks
 }
 
@@ -89,6 +91,7 @@ export const profile: Profile = {
   availability: 'Open to software engineering opportunities',
   domain: 'ridhuan.dev',
   resumeUrl: '/resume.pdf',
+  resumeFileName: 'Muhammad-Ridhuan-Resume.pdf',
   social: {
     github: 'https://github.com/mAtwAe',
     // TODO: add your LinkedIn URL, e.g. 'https://www.linkedin.com/in/your-handle'

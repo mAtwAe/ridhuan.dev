@@ -69,7 +69,7 @@ export function Hero() {
                 Explore My Work
                 <ArrowRight aria-hidden="true" className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
               </a>
-              <a href={profile.resumeUrl} download className="btn-secondary">
+              <a href={profile.resumeUrl} download={profile.resumeFileName} className="btn-secondary">
                 <Download aria-hidden="true" className="size-4" />
                 Download Resume
               </a>
